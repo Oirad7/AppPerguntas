@@ -1,5 +1,8 @@
+// const { urlencoded } = require("body-parser");
+// const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
+
 
 //set view engine como ejs
 app.set('view engine','ejs');
@@ -7,6 +10,13 @@ app.set('view engine','ejs');
 //set pasta arquivos estáticos
 app.use(express.static('public'));
 
+//config. bodyParser - modo antigo deprecated / não precisa instalar
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+
+
+//rotas
 app.get("/", (req,res) => {
     res.render("index");
 });
@@ -16,7 +26,9 @@ app.get("/perguntar", (req,res) => {
 })
 
 app.post("/salvarpergunta", (req,res) =>{
-    res.send("formulário recebido!");
+    let titulo = req.body.titulo;
+    let descricao = req.body.descricao;
+    res.send("formulário recebido! Título: " + titulo + " descricao: " + descricao);
 })
 
 app.listen(3000, ()=>{
