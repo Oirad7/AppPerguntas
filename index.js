@@ -51,8 +51,13 @@ app.get("/perguntar", (req,res) => {
 app.post("/salvarpergunta", (req,res) =>{
     let titulo = req.body.titulo;
     let descricao = req.body.descricao;
-    res.send("formulário recebido! Título: " + titulo + " descricao: " + descricao);
-})
+    Pergunta.create({
+        titulo: titulo,
+        descricao: descricao
+    }).then(() => {
+        res.redirect("/");
+    });
+});
 
 app.listen(3000, ()=>{
     console.log("App rodando");
