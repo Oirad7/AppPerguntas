@@ -1,8 +1,21 @@
 // const { urlencoded } = require("body-parser");
 // const bodyParser = require("body-parser");
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const connection = require('./database/database');
+const Pergunta = require("./database/Pergunta");
+
+
+/*
+try {
+  await connection.authenticate();
+        console.log("Conexão feita com o Banco de Dados!");
+} catch (error) {
+    console.error('Não foi possível conectar ao Banco de Dados!'; error);
+}
+*/
 
 connection
     .authenticate()
@@ -10,8 +23,9 @@ connection
         console.log("Conexão feita com o Banco de Dados!");
     })
     .catch((msgErro) =>{
-        console.log(msgErro);
+        console.log("Não foi possível conectar ao Banco de Dados: " + msgErro);
     })
+
 
 //set view engine como ejs
 app.set('view engine','ejs');
