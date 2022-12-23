@@ -5,11 +5,11 @@ const sequelize = require("sequelize");
 const Resposta = connection.define("respostas",{
     corpo: {
         type: sequelize.TEXT,
-        allowNull: false,
+        allowNull: false
     },
     perguntaId: {
         type: sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
     },
 });
 
